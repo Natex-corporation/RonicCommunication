@@ -1,23 +1,53 @@
 import webbrowser
-import tkinter as tk
+from tkinter import *
+from functools import partial
 import time
+import csv
+import sys
+
+def validateLogin(username, password):
+    InputedName = username.get()
+    InputedPassword = password.get()
+    csv_file = csv.reader(open('TestInputsNames.csv', "r"), delimiter=",")
+    for row in csv_file:
+        if InputedName == row[0]:
+            print ("Exists")
+        else:
+            print ("doesn't exist")
+    csv_file = csv.reader(open('TestInputsPasswords.csv', "r"), delimiter=",")
+    for row in csv_file:
+        if InputedPassword == row[0]:
+            print ("Exists")
+        else:
+            print ("doesn't exist")
+    return
+
+
+#window
+tkWindow = Tk()  
+#tkWindow.geometry('400x150')  
+tkWindow.title('RonicCommunication - Ronic')
+
+#username label and text entry box
+usernameLabel = Label(tkWindow, text="User Name").grid(row=0, column=0)
+username = StringVar()
+usernameEntry = Entry(tkWindow, textvariable=username).grid(row=0, column=1)  
+
+#password label and password entry box
+passwordLabel = Label(tkWindow,text="Password").grid(row=1, column=0)  
+password = StringVar()
+passwordEntry = Entry(tkWindow, textvariable=password, show='*').grid(row=1, column=1)  
+
+validateLogin = partial(validateLogin, username, password)
+
+#login button
+loginButton = Button(tkWindow, text="Login", command=validateLogin).grid(row=4, column=0)  
+
+tkWindow.mainloop()
+
 
 
 chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-
-window = tk.Tk()
-greeting = tk.Label(text="Hello, Tkinter")
-greeting.pack()
-label = tk.Label(
-    text="Hello, Tkinter",
-    foreground="white",  # Set the text color to white
-    background="black"  # Set the background color to black
-)
-label.pack()
-window.mainloop(
-    
-)
-
 url1 = "https://www.facebook.com/"
 url2 = "https://www.instagram.com/"
 url3 = "https://discord.com/channels/@me"
