@@ -1,12 +1,5 @@
 import webbrowser
-from tkinter import *
-from functools import partial
-from tkinter.ttk import *
-from tkinter import *
-from tkinter.ttk import *
 import time
-import csv
-import sys
 
 while(True):
     chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
